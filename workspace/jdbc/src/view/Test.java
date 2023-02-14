@@ -181,7 +181,8 @@ public class Test {
       
 //      댓글 전체 조회
 //      replyDAO.selectAll().stream().filter(dto -> dto.getReplyGroup() == 1).map(ReplyDTO::toString).forEach(System.out::println);
-//      replyDAO.selectAll().stream().filter(dto -> dto.getReplyGroup() == 5).map(ReplyDTO::toString).forEach(System.out::println);
+      replyDAO.selectAll().stream().filter(dto -> dto.getReplyGroup() == 1).map(v -> v.toString()).forEach(System.out::println);
+      replyDAO.selectAll().stream().filter(dto -> dto.getReplyGroup() == 5).map(ReplyDTO::toString).forEach(System.out::println);
    }
 }
 

@@ -17,7 +17,7 @@ public class BoardDAO {
 //   게시글 추가
    public void insert(BoardVO boardVO) {
       String query = "INSERT INTO TBL_BOARD"
-            + "(BOARD_ID, BOARD_TITLE, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE, USER_ID) "
+            + "(BOARD_ID, BOARD_TITL E, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE, USER_ID) "
             + "VALUES(SEQ_BOARD.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ?)";
       connection = DBConnecter.getConnection();
       try {
@@ -61,6 +61,7 @@ public class BoardDAO {
          resultSet = preparedStatement.executeQuery();
          if(resultSet.next()) {
             boardDTO = new BoardDTO();
+//            ++index는 그전에 사용하던 번호 적어놓은것을 자동으로 적어놓은것.
             boardDTO.setBoardId(resultSet.getLong(++index));
             boardDTO.setBoardTitle(resultSet.getString(++index));
             boardDTO.setBoardContent(resultSet.getString(++index));
@@ -159,6 +160,7 @@ public class BoardDAO {
    }
    
 //   게시글 전체 조회
+//   앞으로 게시글을 얼마나 많이 쓰는지 모르기에 ArrayList를 사용함.
    public ArrayList<BoardDTO> selectAll(){
       String query = "SELECT BOARD_ID, BOARD_TITLE, BOARD_CONTENT, BOARD_REGISTER_DATE, "
             + " BOARD_UPDATE_DATE, U.USER_ID, USER_IDENTIFICATION, USER_NAME, USER_PASSWORD, "

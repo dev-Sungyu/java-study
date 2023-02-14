@@ -3,7 +3,7 @@ package anonymousTask;
 // 스타벅스 본사
 public class StarBucks {
 //	지점들이 처음에 한 번 등록할 때
-//	본사에서 정해놓은 양식을 작성하여 form으로 전달한다. 
+//	본사에서 정해놓은 양식을 작성하여 form으로 전달한다.
 	public void register(Form form) {
 //		지점에서 메뉴판 문제 없는 지 검사
 		String[] menu = form.getMenu();

@@ -15,10 +15,11 @@ public class ReplyDAO {
    public ResultSet resultSet;
    
 //   ´ë´ñ±Û Ãß°¡
-   public void insert(ReplyVO replyVO, Long target) {
+   public void insert(ReplyVO replyVO, Long parentReplyId) {
       String query = "INSERT INTO TBL_REPLY"
             + "(REPLY_ID, REPLY_CONTENT, USER_ID, BOARD_ID, REPLY_GROUP, REPLY_DEPTH) "
-            + "VALUES(SEQ_REPLY.NEXTVAL, ?, ?, ?, ?, (SELECT REPLY_DEPTH + 1 FROM TBL_REPLY WHERE REPLY_ID = ?))";
+            + "VALUES(SEQ_REPLY.NEXTVAL, ?, ?, ?, ?, "
+            + "(SELECT REPLY_DEPTH + 1 FROM TBL_REPLY WHERE REPLY_ID = ?))";
       
       connection = DBConnecter.getConnection();
       try {
@@ -26,8 +27,8 @@ public class ReplyDAO {
          preparedStatement.setString(1, replyVO.getReplyContent());
          preparedStatement.setLong(2, UserDAO.userId);
          preparedStatement.setLong(3, replyVO.getBoardId());
-         preparedStatement.setLong(4, target);
-         preparedStatement.setLong(5, target);
+         preparedStatement.setLong(4, parentReplyId);
+         preparedStatement.setLong(5, parentReplyId);
          
          preparedStatement.executeUpdate();
          

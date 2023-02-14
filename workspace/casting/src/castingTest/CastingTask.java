@@ -28,7 +28,11 @@ public class CastingTask {
             new Animation(),
             new Film(),
             new Drama()
+            
       };
+//		Animation animation = new Animation();
+//      Video video = animation;
+      Video video = new Animation();
       CastingTask castingTask = new CastingTask();
       
       for (int i = 0; i < videos.length; i++) {

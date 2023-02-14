@@ -22,6 +22,7 @@ public class UserDAO {
 	            "SELECT COUNT(USER_ID) "
 	            + "FROM TBL_USER "
 	            + "WHERE USER_IDENTIFICATION = ?";
+//	      boolean false 로 받는 이유는 true 가 떴을때만 통과시키기 위해서
 	      boolean result = false;
 	      connection = DBConnecter.getConnection();
 	      try {
@@ -29,6 +30,7 @@ public class UserDAO {
 	         preparedStatement.setString(1, userIdentification);
 	         resultSet = preparedStatement.executeQuery();
 	         
+//	         사용자에게 받아오는 코드
 	         resultSet.next();
 	         result = resultSet.getInt(1) == 0;
 	         
@@ -123,17 +125,20 @@ public class UserDAO {
 
 //   로그인
 	public boolean login(String userIdentification, String userPassword) {
+//		쿼리문을 미리 작성해놓고 밑에서 사용하는 느낌
 		String query = "SELECT USER_ID FROM TBL_USER WHERE USER_IDENTIFICATION = ? AND USER_PASSWORD = ?";
 		boolean check = false;
 
 		connection = DBConnecter.getConnection();
 		try {
+//			위에서 작성한 쿼리문을 preparedStatement에 담아놓는 역할
 			preparedStatement = connection.prepareStatement(query);
+//			매개변수로 받아온 아이를 쿼리문에 넣는 역할
 			preparedStatement.setString(1, userIdentification);
 			preparedStatement.setString(2, encrypt(userPassword));
-
+//			DB로 보내주는 역할
 			resultSet = preparedStatement.executeQuery();
-
+//			사용자가 입력한 걸 받아와서 userVO에 있는 아이디와 일치하는지 확인하는 조건문
 			if (resultSet.next()) {
 				userId = resultSet.getLong(1);
 				check = true;
@@ -304,7 +309,7 @@ public class UserDAO {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setLong(1, userId);
 			resultSet = preparedStatement.executeQuery();
-
+//			화면에 보여주기 위해서 DB에서 받아오는 아이
 			if (resultSet.next()) {
 				userVO = new UserVO();
 				userVO.setUserId(resultSet.getLong(1));
@@ -455,7 +460,7 @@ public class UserDAO {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setLong(1, userId);
 			resultSet = preparedStatement.executeQuery();
-
+//			다음 행에 넣을것이 있다면
 			if (resultSet.next()) {
 				recommendCount = resultSet.getLong(1);
 			}

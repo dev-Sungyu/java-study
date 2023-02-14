@@ -7,7 +7,7 @@ public class ClassArray {
       Shop shop = new Shop("°úÀÚ", 3000, 10);
       Customer[] customers = {
             new Customer("Tom", "01012341234", 50000, 10),
-            new Customer("Jack", "01055556666", 100000, 50)
+            new Customer("Jack", "01055556666", 100000, 50),
       };
       Scanner sc = new Scanner(System.in);
       int choice = 0, result = 0;

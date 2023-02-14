@@ -13,6 +13,7 @@ public class ArrayListTest {
 		
 		ArrayList<Integer> datas = new ArrayList<>();
 		final int SIZE = 9;
+		
 //		C
 		for (int i = 0; i < SIZE; i++) {
 			if(i > 4) {
@@ -23,6 +24,7 @@ public class ArrayListTest {
 			datas.add((i + 1) * 10);
 			System.out.println(datas.size());
 		}
+		
 //		R
 //		for (int i = 0; i < datas.size(); i++) {
 //			System.out.println(datas.get(i));
